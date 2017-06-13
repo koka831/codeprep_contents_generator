@@ -3,26 +3,27 @@
 
 let shell    = require('shelljs'),
     fs       = require('fs'),
+    path     = require('path'),
     util     = require('util'),
-    readline = require('readline'),
-    config   = require('config');
+    readline = require('readline');
 
-const input_chapter_delimiter = config.get('input_chapter_delimiter');
-const input_section_delimiter = config.get('input_section_delimiter');
-const output_chapter_delimiter = config.get('output_chapter_delimiter');
-const output_section_delimiter = config.get('output_section_delimiter');
-const ignore_firstline = config.get('ignore_firstline');
+const input_chapter_delimiter = '#';
+const input_section_delimiter = '##';
+const output_chapter_delimiter = '##';
+const output_section_delimiter = '##';
+const ignore_firstline = true;
 
 const ofname = 'chapter';
 const chapter_regex = new RegExp(input_chapter_delimiter + "\\s(.*)");
 const section_regex = new RegExp(input_section_delimiter + "\\s(.*)");
 const playground_regex = new RegExp('Playground', 'i');
 
+const template_path = process.env.CODEPREP_TEMPLATE_PATH;
 const readme = './README.md';
-const template_playground = './src/playground.md';
-const template_chapter_exerpt = './src/chapter_exerpt.md';
-const template_chapter_summary = './src/chapter_summary.md';
-const template_section = './src/section.md';
+const template_playground = template_path + '/src/playground.md';
+const template_chapter_exerpt = template_path + '/src/chapter_exerpt.md';
+const template_chapter_summary = template_path + '/src/chapter_summary.md';
+const template_section = template_path + '/src/section.md';
 
 class Generator {
   constructor(opts) {
