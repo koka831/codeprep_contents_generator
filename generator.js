@@ -7,17 +7,23 @@ let shell    = require('shelljs'),
     readline = require('readline'),
     config   = require('config');
 
-const chapter_delimiter = config.get('chapter_delimiter');
-const section_delimiter = config.get('section_delimiter');
+const input_chapter_delimiter = config.get('input_chapter_delimiter');
+const input_section_delimiter = config.get('input_section_delimiter');
+const output_chapter_delimiter = config.get('output_chapter_delimiter');
+const output_section_delimiter = config.get('output_section_delimiter');
 const ignore_firstline = config.get('ignore_firstline');
 
 // generates chapter*.md
 const ofname = 'chapter';
-const chapter_regex = new RegExp(chapter_delimiter + "\\s(.*)");
-const section_regex = new RegExp(section_delimiter + "\\s(.*)");
+const chapter_regex = new RegExp(input_chapter_delimiter + "\\s(.*)");
+const section_regex = new RegExp(input_section_delimiter + "\\s(.*)");
 const playground_regex = new RegExp('Playground', 'i');
-const readme = './README.md';
 
+const readme = './README.md';
+const template_playground = './src/playground.md';
+const template_chapter_exerpt = './src/chapter_exerpt.md';
+const template_chapter_summary = './src/chapter_summary.md';
+const template_section = './src/section.md';
 
 class Generator {
   constructor() {
@@ -32,12 +38,11 @@ class Generator {
 
     lines.forEach((line, i) => {
       if (i == 0 && ignore_firstline) return;
-
       if (section_regex.test(line)) {
         let last_chapter = this.chapters[this.chapters.length-1];
-        last_chapter.add_section(line);
+        last_chapter.add_section(line.replace(input_section_delimiter, ""));
       } else if (chapter_regex.test(line)) {
-        const chapter = new Chapter(line);
+        const chapter = new Chapter(line.replace(input_chapter_delimiter, ""));
         this.chapters.push(chapter);
       }
     });
@@ -45,25 +50,21 @@ class Generator {
 
   gen() {
     // TODO: check force flag at call
-    // TODO: check Playground
-    // > create chapter*.md
-    // > put exerpt text
-    // > for each sections
-    // >> put template
-    // > put summary text
     this.chapters.forEach((chapter, i) => {
       const current_file = ofname + (i + 1).toString() + '.md';
-      // check if playground
+
       if (playground_regex.test(chapter.title)) {
-        shell.cat('./src/playground.md').to(current_file);
+        shell.cat(template_playground).to(current_file);
       } else {
-        shell.echo(chapter.title).to(current_file);
-        shell.cat('./src/chapter_exerpt.md').toEnd(current_file);
-        //chapter.section.forEach() => {
-          // TODO: put section title
-          //  shell.cat('./src/section.md').toEnd(current_file);
-        //}
-        shell.cat('./src/chapter_summary.md').toEnd(current_file);
+        shell.echo(output_chapter_delimiter + chapter.title + '\n').to(current_file);
+        shell.cat(template_chapter_exerpt).toEnd(current_file);
+
+        chapter.section.forEach((title, j) => {
+          shell.cat(template_section).toEnd(current_file);
+          shell.sed('-i', /\s*\$\{title\}/, title, current_file);
+        });
+
+        shell.cat(template_chapter_summary).toEnd(current_file);
       }
     });
   }

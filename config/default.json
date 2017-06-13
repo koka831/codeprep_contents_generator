@@ -1,5 +1,7 @@
 {
-  "chapter_delimiter": "#",
-  "section_delimiter": "##",
-  "ignore_firstline": true
+  "input_chapter_delimiter": "#",
+  "input_section_delimiter": "##",
+  "ignore_firstline": true,
+  "output_chapter_delimiter": "#",
+  "output_section_delimiter": "##"
 }
