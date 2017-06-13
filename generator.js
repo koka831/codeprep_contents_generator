@@ -13,7 +13,6 @@ const output_chapter_delimiter = config.get('output_chapter_delimiter');
 const output_section_delimiter = config.get('output_section_delimiter');
 const ignore_firstline = config.get('ignore_firstline');
 
-// generates chapter*.md
 const ofname = 'chapter';
 const chapter_regex = new RegExp(input_chapter_delimiter + "\\s(.*)");
 const section_regex = new RegExp(input_section_delimiter + "\\s(.*)");
