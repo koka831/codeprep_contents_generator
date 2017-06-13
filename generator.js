@@ -9,7 +9,7 @@ let shell    = require('shelljs'),
 
 const input_chapter_delimiter = '#';
 const input_section_delimiter = '##';
-const output_chapter_delimiter = '##';
+const output_chapter_delimiter = '#';
 const output_section_delimiter = '##';
 const ignore_firstline = true;
 

@@ -1,43 +1,18 @@
-# HTMLとCSS3でつくるトグルスイッチ
+# codeprep template generator
 
-----
+## installation
+```
+git clone
 
-# トグルスイッチのHTML構造を作ろう
-## コンテナの作成
-## スイッチの作成
-## 外枠を作成
+export `pwd`:$PATH
+export CODEPREP_TEMPLATE_PATH="`pwd`"
+```
 
-# 外枠をスタイリングしよう
-## 外枠に背景色を設定する
-## 外枠のサイズを設定する
-## 外枠の角を丸くする
-## 外枠のスタイルを微調整する(1)
-## 外枠のスタイルを微調整する(2)
+## usage
+- type `codeprep_gen` where being `README.md`, then generates chapter*.md.
 
-# スイッチをスタイリングしよう
-## スイッチに背景色を設定する
-## スイッチのサイズを設定する
-## スイッチを丸くする
-## スイッチの位置を調整する(1)
-## スイッチの位置を調整する(2)
-## スイッチの位置を調整する(3)
 
-# トグルした時に動くようにしてみよう
-## チェックした時に背景色を変える
-## スイッチが動くようにする
-## スイッチをアニメーションさせる
-
-# トグルスイッチの細部を仕上げていこう
-## チェックボックスうを非表示にする
-## ラベルテキストを描画エリア外に移動する
-## アニメーションに変化をつける
-
-# カラーテーマを作ろう
-## トグルスイッチのHTML構造を追加する
-## 金色のカラーテーマを作る
-## 緑色のカラーテーマを作る
-
-# Playground
-
-----
-
+## settings
+- `./src/*.md` : template files
+- generator.js
+  - input|output_*_delimiter : README|chapter*.md delimiter
