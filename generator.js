@@ -26,8 +26,9 @@ const template_chapter_summary = './src/chapter_summary.md';
 const template_section = './src/section.md';
 
 class Generator {
-  constructor() {
+  constructor(opts) {
     this.chapters = [];
+    this.opts = opts;
   }
 
   load() {
@@ -48,11 +49,22 @@ class Generator {
     });
   }
 
+  isExist() {
+    try {
+      fs.statSync(ofname+'1.md');
+      return true;
+    } catch (err) {
+      if (err.code == 'ENOENT') return false;
+    }
+  }
+
   gen() {
-    // TODO: check force flag at call
+    if (this.isExist() && !this.opts['force']) {
+      console.log("already chapter files exist. please use -f|--force flag.");
+      return;
+    }
     this.chapters.forEach((chapter, i) => {
       const current_file = ofname + (i + 1).toString() + '.md';
-
       if (playground_regex.test(chapter.title)) {
         shell.cat(template_playground).to(current_file);
       } else {
@@ -68,6 +80,7 @@ class Generator {
       }
     });
   }
+
 }
 
 class Chapter {
