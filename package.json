@@ -1,0 +1,17 @@
+{
+  "name": "codeprep_gen",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "codeprep_gen": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "koka <koka.code@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^1.26.1",
+    "shelljs": "^0.7.8"
+  }
+}

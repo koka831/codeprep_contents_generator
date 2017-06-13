@@ -1,0 +1,5 @@
+{
+  "chapter_delimiter": "#",
+  "section_delimiter": "##",
+  "ignore_firstline": true
+}
