@@ -4,8 +4,9 @@
 ```
 git clone
 
-export `pwd`:$PATH
-export CODEPREP_TEMPLATE_PATH="`pwd`"
+# export path & CODEPREP_TEMPLATE_PATH
+export ${current_dir}:$PATH
+export CODEPREP_TEMPLATE_PATH=${current_dir}
 ```
 
 ## usage
