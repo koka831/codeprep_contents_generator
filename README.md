@@ -25,6 +25,8 @@ git clone https://github.com/koka831/codeprep_contents_generator
 export ${current_dir}:$PATH
 export CODEPREP_TEMPLATE_PATH=${current_dir}
 
+// install deps
+npm install
 ```
 
 ## settings
