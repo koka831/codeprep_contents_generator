@@ -16,6 +16,24 @@ this script generates chapter & playground templates.
 - nodejs >= 7.10
 ## Usage
 - type `codeprep_gen` where being `README.md`, then generates chapter*.md.
+
+### README requirement
+```
+# book title (first line will be ignored so you can use same `#`delimiter)
+
+# chapter1 title
+## 1-1 title
+## 1-2
+...
+
+# chapter2 title
+## 2-2
+
+...
+
+# Playground
+```
+
 ## Install
 
 ```sh
@@ -40,6 +58,7 @@ npm install
     - chapters' title header in output files.
   - `output_section_delimiter`: (default: "##")
     - sections' title header in output files.
+  - `ignore_firstline`: (default: true)
 
 ## Contribution
 
