@@ -1,0 +1,10 @@
+title: ${title}
+# image: cover.png
+detail: |
+  pass
+chapters:
+  - chapter1.md
+tags:
+
+# images:
+#  -assets/images/*.png

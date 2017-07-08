@@ -5,12 +5,19 @@ let { Generator } = require('./generator');
 
 let opts = {};
 
+// for now
+// echo comments
+opts['comment'] = true;
+// generate book.yml
+opts['book_yml'] = true;
+
 process.argv.slice(2).forEach((v, i) => {
   if (v == '-f'|| v == '--force') {
     opts['force'] = true;
   } else {
     opts['force'] = false;
   }
+
 });
 
 let gene = new Generator(opts);
