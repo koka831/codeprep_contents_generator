@@ -67,3 +67,7 @@ npm install
 
 ## Licence
 
+
+## INFO
+- add book.yml generator (7/9)
+- add comment support on each sections (7/9)
