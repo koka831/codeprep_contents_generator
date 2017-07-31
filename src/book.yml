@@ -6,5 +6,7 @@ chapters:
   - chapter1.md
 tags:
 
-# images:
+# files:
 #  -assets/images/*.png
+download: true
+playground: true
